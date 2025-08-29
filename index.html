@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Jaseela Thelakkat - Healthcare Operations & Digital Health</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background-color: #fbfbfd;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: #007aff;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 24px 0;
+            background: linear-gradient(135deg, #fbfbfd 0%, #f5f5f7 100%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(0, 122, 255, 0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(52, 199, 89, 0.03) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #1d1d1f 0%, #424245 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            color: #86868b;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #1d1d1f;
+            font-weight: 500;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: #007aff;
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px 0 rgba(0, 122, 255, 0.15);
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px 0 rgba(0, 122, 255, 0.25);
+        }
+
+        .btn-secondary {
+            background: rgba(0, 0, 0, 0.04);
+            color: #1d1d1f;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        /* Core Competencies */
+        .competencies {
+            padding: 120px 24px;
+            background: white;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: #86868b;
+            margin-bottom: 80px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .competency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .competency-card {
+            background: #fbfbfd;
+            padding: 40px 32px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .competency-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.02) 0%, rgba(52, 199, 89, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .competency-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 122, 255, 0.1);
+        }
+
+        .competency-card:hover::before {
+            opacity: 1;
+        }
+
+        .competency-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #007aff 0%, #5ac8fa 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .competency-card:nth-child(2) .competency-icon {
+            background: linear-gradient(135deg, #34c759 0%, #30d158 100%);
+        }
+
+        .competency-card:nth-child(3) .competency-icon {
+            background: linear-gradient(135deg, #ff9500 0%, #ff6b00 100%);
+        }
+
+        .competency-card:nth-child(4) .competency-icon {
+            background: linear-gradient(135deg, #af52de 0%, #bf5af2 100%);
+        }
+
+        .competency-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .competency-list {
+            list-style: none;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .competency-list li {
+            padding: 8px 0;
+            color: #424245;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .competency-list li:last-child {
+            border-bottom: none;
+        }
+
+        .competency-list li:before {
+            content: "•";
+            color: #007aff;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+
+        /* Experience Timeline */
+        .experience {
+            padding: 120px 24px;
+            background: white;
+        }
+
+        .experience-timeline {
+            max-width: 900px;
+            margin: 0 auto 80px;
+        }
+
+        .experience-item {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: #fbfbfd;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .experience-header h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 0;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .experience-period {
+            background: linear-gradient(135deg, #007aff 0%, #5ac8fa 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .experience-org {
+            color: #86868b;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .experience-achievements {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-achievements li {
+            padding: 12px 0;
+            color: #424245;
+            font-size: 16px;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .experience-achievements li:last-child {
+            border-bottom: none;
+        }
+
+        .experience-achievements li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #34c759;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Education & Projects */
+        .education-projects {
+            padding: 120px 24px;
+            background: linear-gradient(135deg, #f5f5f7 0%, #fbfbfd 100%);
+        }
+
+        .two-column-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title-small {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .education-item {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .education-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .institution {
+            color: #86868b;
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .year {
+            color: #007aff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .certifications-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin: 40px 0 20px;
+        }
+
+        .certifications-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .certifications-list li {
+            background: white;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            font-size: 15px;
+            color: #424245;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+            padding-left: 44px;
+            transition: all 0.3s ease;
+        }
+
+        .certifications-list li:hover {
+            background: #fbfbfd;
+            transform: translateX(4px);
+        }
+
+        .certifications-list li:before {
+            content: "📜";
+            position: absolute;
+            left: 16px;
+            font-size: 16px;
+        }
+
+        .project-item {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #007aff 0%, #5ac8fa 100%);
+            border-radius: 2px 0 0 2px;
+        }
+
+        .project-item:nth-child(2)::before {
+            background: linear-gradient(135deg, #34c759 0%, #30d158 100%);
+        }
+
+        .project-item:nth-child(3)::before {
+            background: linear-gradient(135deg, #ff9500 0%, #ff6b00 100%);
+        }
+
+        .project-item:nth-child(4)::before {
+            background: linear-gradient(135deg, #af52de 0%, #bf5af2 100%);
+        }
+
+        .project-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .project-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 12px;
+        }
+
+        .project-item p {
+            color: #424245;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .experience-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 24px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #007aff;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #86868b;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1d1d1f;
+            color: white;
+            padding: 60px 24px 40px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer p {
+            font-size: 18px;
+            opacity: 0.8;
+            margin-bottom: 32px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            color: #86868b;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+            border-top: 1px solid #424245;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .competency-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .experience-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .two-column-layout {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .experience-header h3 {
+                min-width: auto;
+            }
+
+            .experience-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="logo">Dr. Jaseela T</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#competencies">Expertise</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Dr. Jaseela Thelakkat</h1>
+            <p class="hero-subtitle">BDS, MPH</p>
+            <p class="hero-description">Healthcare Operations | Digital Health | Data Analysis | Health Economics</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-primary">Get In Touch</a>
+                <a href="#experience" class="btn-secondary">View Experience</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Competencies -->
+    <section class="competencies" id="competencies">
+        <div class="section-container">
+            <h2 class="section-title">Core Competencies</h2>
+            <p class="section-subtitle">Specialized expertise across healthcare operations, digital innovation, data analytics, and public health policy</p>
+            
+            <div class="competency-grid">
+                <div class="competency-card">
+                    <div class="competency-icon">🏥</div>
+                    <h3 class="competency-title">Healthcare Operations & Strategy</h3>
+                    <ul class="competency-list">
+                        <li>Healthcare Operations Management</li>
+                        <li>Program/Project Management</li>
+                        <li>Clinical Operations Associate</li>
+                        <li>Service Delivery & Change Management</li>
+                    </ul>
+                </div>
+
+                <div class="competency-card">
+                    <div class="competency-icon">📱</div>
+                    <h3 class="competency-title">Digital Health & Innovation</h3>
+                    <ul class="competency-list">
+                        <li>Digital Health Program Coordinator</li>
+                        <li>Health Informatics Associate</li>
+                        <li>mHealth/eHealth Program Coordinator</li>
+                        <li>Healthcare Technology Implementation</li>
+                    </ul>
+                </div>
+
+                <div class="competency-card">
+                    <div class="competency-icon">📊</div>
+                    <h3 class="competency-title">Data Analytics & Health Economics</h3>
+                    <ul class="competency-list">
+                        <li>Healthcare Data Analyst</li>
+                        <li>Health Economics & Outcomes Research</li>
+                        <li>Clinical Data Analyst</li>
+                        <li>Healthcare Business Intelligence</li>
+                        <li>Performance Improvement Analyst</li>
+                    </ul>
+                </div>
+
+                <div class="competency-card">
+                    <div class="competency-icon">🌍</div>
+                    <h3 class="competency-title">Public Health & Policy</h3>
+                    <ul class="competency-list">
+                        <li>Public Health Specialist</li>
+                        <li>Monitoring & Evaluation (M&E)</li>
+                        <li>Health Policy Analyst</li>
+                        <li>Community Health Program Coordinator</li>
+                        <li>Health Promotion & Education</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Experience -->
+    <section class="experience" id="experience">
+        <div class="section-container">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-subtitle">Leading healthcare transformation across India's largest public health systems</p>
+            
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Consultant - National Mental Health Programme</h3>
+                        <span class="experience-period">November 2023 – May 2025</span>
+                    </div>
+                    <p class="experience-org">National Health Mission | Department of Health and Family Welfare Tamil Nadu</p>
+                    <ul class="experience-achievements">
+                        <li>Executed state-wide service delivery strategies for mental health and addiction recovery, coordinating 200+ facilities</li>
+                        <li>Led operational roll-out of 25 new De-addiction centers, ensuring process compliance and quality control</li>
+                        <li>Secured ₹3+ crores additional funding from Government of India through data-backed proposals</li>
+                        <li>Strengthened data systems and reporting compliance across 200+ facilities and institutions</li>
+                        <li>Led analysis of Tele-mental health service performance and introduced data-driven improvements</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Consultant - Universal Health Coverage Programme</h3>
+                        <span class="experience-period">May 2023 – May 2024</span>
+                    </div>
+                    <p class="experience-org">National Health Mission | Department of Health and Family Welfare Tamil Nadu</p>
+                    <ul class="experience-achievements">
+                        <li>Provided programmatic and technical support for Universal Health Care Delivery Programme implementation</li>
+                        <li>Conducted monthly performance reviews and data quality audits of 4,800+ Health Centres</li>
+                        <li>Analyzed operational inefficiencies in India's public health insurance scheme (AB-PMJAY)</li>
+                        <li>Delivered actionable policy recommendations to improve healthcare delivery</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>Policy Intern</h3>
+                        <span class="experience-period">August 2022 – October 2022</span>
+                    </div>
+                    <p class="experience-org">State Health Agency (SHA) | Department of Health and Family Welfare Kerala</p>
+                    <ul class="experience-achievements">
+                        <li>Conducted field studies and developed IEC materials for community-based interventions</li>
+                        <li>Organized 5 outreach camps and 3 health awareness sessions</li>
+                        <li>Contributed to Tamil Nadu State Policy for Care of Homeless Persons with Mental Illness</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-stats">
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Facilities Managed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4,800+</span>
+                    <span class="stat-label">Health Centers Reviewed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">25+</span>
+                    <span class="stat-label">Centers Launched</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">₹3+ Cr</span>
+                    <span class="stat-label">Funding Secured</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Projects -->
+    <section class="education-projects" id="education">
+        <div class="section-container">
+            <div class="two-column-layout">
+                <!-- Education -->
+                <div class="education-section">
+                    <h2 class="section-title-small">Education</h2>
+                    <div class="education-item">
+                        <h3>Master of Public Health (MPH)</h3>
+                        <p class="institution">TATA Institute of Social Sciences, Mumbai</p>
+                        <p class="year">2021 - 2023 | CGPA: 6.7</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Bachelor of Dental Surgery (BDS)</h3>
+                        <p class="institution">Kerala University of Health Sciences</p>
+                        <p class="year">2014 - 2021 | CGPA: 6.6</p>
+                    </div>
+
+                    <h3 class="certifications-title">Certifications</h3>
+                    <ul class="certifications-list">
+                        <li>Health Financing Policy for Universal Health Coverage (WHO)</li>
+                        <li>Scientific Writing in Health Research (ICMR-NIE)</li>
+                        <li>Advanced R Programming for Data Analytics (In Progress)</li>
+                        <li>Six Sigma (In Progress)</li>
+                    </ul>
+                </div>
+
+                <!-- Projects -->
+                <div class="projects-section">
+                    <h2 class="section-title-small">Key Projects & Impact</h2>
+                    
+                    <div class="project-item">
+                        <h3>Mental Health Analytics System</h3>
+                        <p>Designed comprehensive data reporting systems to monitor care uptake and service responsiveness across state-wide mental health facilities.</p>
+                    </div>
+
+                    <div class="project-item">
+                        <h3>Healthcare Funding Optimization</h3>
+                        <p>Secured over ₹3 crores in additional funding from Government of India through strategic data-backed proposals and policy recommendations.</p>
+                    </div>
+
+                    <div class="project-item">
+                        <h3>De-addiction Centers Launch</h3>
+                        <p>Led end-to-end operational implementation of 25+ new care centers, overseeing clinical integration, team onboarding, and quality compliance.</p>
+                    </div>
+
+                    <div class="project-item">
+                        <h3>State Policy Development</h3>
+                        <p>Key contributor to Tamil Nadu State Policy for Care of Homeless Persons with Mental Illness as in-house drafting committee member.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-content">
+            <h3>Let's Connect</h3>
+            <p>Ready to transform healthcare operations with data-driven strategies and innovative solutions.</p>
+            <div class="contact-info">
+                <a href="mailto:Jaseela.cheleri@gmail.com" class="contact-item">Jaseela.cheleri@gmail.com</a>
+                <a href="tel:+971551859078" class="contact-item">+971 55 185 9078</a>
+                <a href="https://www.linkedin.com/in/dr-jaseela-t" class="contact-item">LinkedIn Profile</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Dr. Jaseela Thelakkat. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(251, 251, 253, 0.95)';
+            } else {
+                nav.style.background = 'rgba(251, 251, 253, 0.8)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe competency cards
+        document.querySelectorAll('.competency-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
